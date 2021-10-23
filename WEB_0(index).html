@@ -1,0 +1,66 @@
+<!doctype html>
+<html> 
+<head>
+  <title>WEB1 - html</title>
+  <meta charset = "utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="colors.js"></script>
+</head>
+
+<body>
+  <input id="night_day" type=button value="night" onclick="NightDayHandler(this);">
+
+  <h1><a href="#!WEB" class="saw" onclick="fetchPage('WEB')">WEB</a></h1>
+  <div id = "grid">
+    <ol class="category">
+      <strong><li><a href = "#!html" class="saw" onclick="fetchPage('html')">HTML</a></li></strong>
+      <strong><li><a href = "#!css" class="saw" onclick="fetchPage('css')">CSS</a></li></strong>
+      <strong><li><a href = "#!javascript" class="saw" onclick="fetchPage('javascript')">JavaScript</a></li></strong>
+    </ol> 
+    <div id="text">
+      <article>
+
+      </article>
+    </div>
+  </div>
+  <script>
+    function fetchPage(name){
+      fetch(name).then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      });
+    }
+
+    if(location.hash){
+      fetchPage(location.hash.substr(2));
+    } else {
+      fetchPage('welcome');
+    }
+
+    fetch('list').then(function(response){
+      response.text().then(function(text){
+        let items = text.split(',');
+        document.querySelector('.category').innerHTML = text;
+      })
+    });
+    
+
+
+  </script>
+  <br><br><br><br><br><br>
+</body>
+
+
+</html>
+<!--
+
+<h3> <li> <h3> <xmp>  </xmp> </h3> </li> </h3>
+
+ex) <br>
+<strong><xmp>  </xmp></strong>
+<strong>=></strong>
+
+<br>
+
+-->

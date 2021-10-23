@@ -1,0 +1,63 @@
+<!doctype html>
+<html> 
+<head>
+  <title>WEB1 - html</title>
+  <meta charset = "utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="colors.js"></script>
+</head>
+
+<body>
+  <input id="night_day" type=button value="night" onclick="NightDayHandler(this);">
+
+  <h1><a href="#!WEB" class="saw" onclick="fetchPage('WEB')">WEB</a></h1>
+  <div id = "grid">
+    <ol class="category">
+      
+    </ol> 
+    <div id="text">
+      <article>
+        
+      </article>
+    </div>
+  </div>
+
+  <script>
+    function fetchPage(name){
+      fetch(name).then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      });
+    }
+
+    if(location.hash){
+      fetchPage(location.hash.substr(2));
+    } else {
+      fetchPage('welcome');
+    }
+    
+    fetch('list').then(function(response){
+      response.text().then(function(text){
+        document.querySelector('.category').innerHTML = text;
+      })
+    });
+
+
+  </script>
+  
+  <br><br><br><br><br><br>
+</body>
+
+</html>
+<!--
+
+<h3> <li> <h3> <xmp>  </xmp> </h3> </li> </h3>
+
+ex) <br>
+<strong><xmp>  </xmp></strong>
+<strong>=></strong>
+
+<br>
+
+-->
